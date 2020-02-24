@@ -9,8 +9,8 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/custom.css" rel="stylesheet">
     <link href="/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
 
     <link href="/assets/css/animate.css" rel="stylesheet">
@@ -20,12 +20,11 @@
 
 <body>
     <div id="wrapper">
-      @include('backend.admin.dashboard.includes.leftbar')
-
+      @include('backend.dashboard.includes.leftbar')
         <div id="page-wrapper" class="gray-bg">
-        @include('backend.admin.dashboard.includes.topnavbar')
+        @include('backend.dashboard.includes.topnavbar')
           @yield('content')
-      @include('backend.admin.dashboard.includes.footer')
+      @include('backend.dashboard.includes.footer')
         </div>
     </div>
     <!-- Mainly scripts -->

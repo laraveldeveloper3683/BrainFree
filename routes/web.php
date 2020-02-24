@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,23 +18,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes(['verify' => true]);;
+Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::group(['middleware' => ['role:admin|seller|vendor|buyer']], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+});
+
+Route::get('/profile/complete/{token}', 'UserController@getToken');
+
 
 Route::prefix('admin')->group(function () {
-
-Route::prefix('vendor')->group(function () {
-Route::get('/', 'VendorController@index');
-Route::get('/add' ,'VendorController@show');
-Route::get('/edit/{id}' ,'VendorController@show');
-Route::post('/form/submit' ,'VendorController@store');
-Route::get('/delete' ,'VendorController@destroy');
-Route::get('/block' ,'VendorController@block');
-Route::get('/view' ,'VendorController@view');
+    Route::resource('roles', 'Admin\RoleController');
 });
 
-    Route::get('/buyer', 'BuyerController@index');
+\App\Http\Controllers\Buyer\BuyerController::routers();
 
-    Route::get('/seller', 'SellerController@index');
-});
+\App\Http\Controllers\Seller\SellerController::routers();
+
+\App\Http\Controllers\Vendor\VendorController::routers();
+

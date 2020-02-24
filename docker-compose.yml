@@ -1,0 +1,41 @@
+version: '3.3'
+services:
+
+  #PHP Service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: digitalocean.com/php
+    container_name: app
+    restart: on-failure
+    tty: true
+    volumes:
+      - ./:/var/www
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    networks:
+      - app-network
+
+  #Nginx Service
+  webserver:
+    image: nginx:alpine
+    container_name: brainfree
+    restart: on-failure
+    tty: true
+    volumes:
+      - ./:/var/www
+      - ./Docker/nginx/conf.d/:/etc/nginx/conf.d/
+    ports:
+      - "90:80"
+      - "448:443"
+    networks:
+      - app-network
+
+
+
+#Docker Networks
+networks:
+  app-network:
+    driver: bridge
