@@ -107,7 +107,6 @@ class VendorController extends Controller
 
     public function postSteponeform(Request $request){
          Session::put('stepone',$request->all());
-
        return view('backend.dashboard.vendor.steps.steptwo');
     }
 

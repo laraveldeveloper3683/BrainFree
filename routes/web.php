@@ -37,3 +37,6 @@ Route::prefix('admin')->group(function () {
 
 \App\Http\Controllers\Vendor\VendorController::routers();
 
+\App\Http\Controllers\Seller\GstBill\GstBillController::routers();
+
+\App\Http\Controllers\Seller\RoughBill\RoughBillController::routers();
