@@ -1,23 +1,25 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
-
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div id="app">
+        <ol>
+            <li v-bind:key="todo.text" v-for="todo in todos">{{ todo.text }}</li>
+        </ol>
     </div>
 </template>
 
 <script>
+    import ExampleComponent from "./components/ExampleComponent";
     export default {
-        mounted() {
-            console.log('Component mounted.')
+        name: "App",
+        components: {
+            ExampleComponent
+        },
+        data() {
+            return {
+                todos: [
+                    { text: "Learn JavaScript" },
+                    { text: "Learn Vue" },
+                    { text: "Build something awesome" }
+                ]
+            };
         }
-    }
-</script>
+    };

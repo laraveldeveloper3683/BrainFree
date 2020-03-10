@@ -79,9 +79,8 @@
                 </div>
             @endif
 
-            <div class="content">
-                <div class="title m-b-md">
-                  Online Management,Selling and Buying Services
+            <div class="content"><div class="title m-b-md">
+                    Online Management,Selling and Buying Services
                 </div>
 
                 <div class="links">
